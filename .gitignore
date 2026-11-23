@@ -1,0 +1,12 @@
+# Binaries / local build output
+*.exe
+*.test
+*.out
+/bin/
+/dist/
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp

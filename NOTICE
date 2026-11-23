@@ -1,0 +1,36 @@
+image-to-pixel-art-go
+=====================
+
+Provenance
+----------
+
+This library packages the core pixel-processing behavior demonstrated by the
+browser tool at:
+
+  https://www.uwarp.design/image-to-pixel-art
+
+That tool's algorithm and palette helpers originated as a TypeScript port of
+Pixel It; the TypeScript package is published separately. This repository is
+the idiomatic Go form of that same core (pipeline order: pixelate → grayscale →
+palette → max size).
+
+Upstream algorithm
+------------------
+
+The pixelation / grayscale / palette matching algorithm is a port of:
+
+  https://github.com/giventofly/pixelit
+  Author: José Moreira
+  License: MIT (see LICENSE)
+
+TypeScript reference implementation:
+
+  https://github.com/sherotree/image-to-pixel-art
+
+Built-in named palettes (Vinik24, Sunset 8, NES, Endesga 16, ...) are included
+for API parity with the reference tool UI.
+
+License
+-------
+
+MIT — see LICENSE. Retain both copyright lines when redistributing.
