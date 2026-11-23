@@ -2,9 +2,9 @@ name: Assemble parity.json
 on:
   push:
     paths:
-      - "testdata/parity.json.zlib.b64"
-      - "scripts/assemble-parity.py"
-      - ".github/workflows/assemble-parity.yml"
+      - 'testdata/parity.part*.b64'
+      - 'scripts/assemble-parity.py'
+      - '.github/workflows/assemble-parity.yml'
   workflow_dispatch:
 permissions:
   contents: write
@@ -15,13 +15,17 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-      - name: Assemble testdata/parity.json
+          python-version: '3.12'
+      - name: Assemble
         run: python3 scripts/assemble-parity.py
-      - name: Commit if changed
+      - name: Commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add testdata/parity.json
-          git diff --cached --quiet || git commit -m "test: assemble testdata/parity.json from zlib payload"
-          git push
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "test: assemble testdata/parity.json from zlib parts"
+            git push
+          fi
